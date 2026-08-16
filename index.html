@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Md Mahmudul Hasan — WordPress Developer • Graphic Designer • T-Shirt Designer • Google Ads Specialist</title>
+<meta name="description" content="Portfolio of Md Mahmudul Hasan — WordPress Developer, Graphic Designer, T-Shirt Artist & Google Ads Specialist based in Dhaka, Bangladesh.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- =================== FLOATING NAVBAR =================== -->
+<header>
+  <div class="navbar">
+    <a href="#home" class="logo">
+      <span class="dot"></span>
+      <span id="nav-logo-text">HasanVLO</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#portfolio">Reviews</a>
+      <a href="#designs" class="nav-highlight"><i class="fa-solid fa-palette"></i> Graphic Showcase</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+      <a href="#contact" class="btn btn-primary btn-sm">Let's Talk</a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- =================== MOBILE MENU =================== -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#designs" onclick="toggleMobileMenu()"><i class="fa-solid fa-palette"></i> Graphic Showcase</a>
+  <a href="#" onclick="openLegalModal('privacy'); return false;"><i class="fa-solid fa-scale-balanced"></i> Legal &amp; Policies</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- =================== DEDICATED SCROLL SEQUENCE HERO =================== -->
+<div id="home"></div>
+<div id="hero-scroll-wrapper">
+  <!-- Pinned Sticky Stage -->
+  <div id="hero-sticky-stage">
+    <!-- Canvas Frame Sequence -->
+    <div id="canvas-container">
+      <canvas id="sequence-canvas"></canvas>
+      <div class="canvas-vignette"></div>
+    </div>
+
+    <!-- Hero Content Overlay Layer -->
+    <div class="hero-overlay-layer">
+      <div class="container hero-grid">
+        <div class="hero-text-col">
+          <div class="hero-badge">
+            <span class="pulse-ring"></span>
+            <i class="fa-solid fa-circle-check"></i> Available for Freelance &amp; Contracts
+          </div>
+          <h1>Hi, I'm <span class="grad-text" id="hero-name">Md Mahmudul Hasan</span><br>
+            <span class="role-rotator" id="typed-role">WordPress Developer</span><span class="type-cursor">&nbsp;</span>
+          </h1>
+          <p class="hero-lead" id="hero-lead">I build fast WordPress websites, design print-ready T-shirt & vector graphics, and run data-driven Google Ads campaigns — helping brands look sharp and scale online.</p>
+          <div class="hero-cta-group">
+            <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
+            <a href="#" class="btn btn-ghost" id="btn-cv"><i class="fa-solid fa-download"></i> Download CV</a>
+          </div>
+          <div class="hero-social-chips" id="hero-socials"></div>
+        </div>
+
+        <div class="hero-badge-col">
+          <div class="floating-badge badge-top">
+            <div class="badge-icon"><i class="fa-brands fa-wordpress"></i></div>
+            <div>
+              <strong>WordPress &amp; Elementor</strong>
+              <span>Custom builds &amp; Landing pages</span>
+            </div>
+          </div>
+          <div class="floating-badge badge-middle">
+            <div class="badge-icon"><i class="fa-solid fa-palette"></i></div>
+            <div>
+              <strong>Graphic Designer</strong>
+              <span>Vector art &amp; Apparel graphics</span>
+            </div>
+          </div>
+          <div class="floating-badge badge-bottom">
+            <div class="badge-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <div>
+              <strong>Google Ads Specialist</strong>
+              <span>Data-driven PPC campaigns</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll to explore portfolio</span>
+        <div class="scroll-mouse"><div class="wheel"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== MAIN CONTENT SECTIONS (CLEAN LUXURY THEME) =================== -->
+<main class="main-content-wrapper">
+
+  <!-- =================== 01 · ABOUT BENTO =================== -->
+  <section id="about" class="section-pad">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><i class="fa-solid fa-user"></i> 01 · About Me</div>
+        <h2 class="section-title">The engineer who <span class="grad-text">designs</span>,<br>and the marketer who <span class="grad-text">builds</span>.</h2>
+        <p class="section-sub">Electronics &amp; Information Engineering precision combined with creative instinct — applied to websites, print design, and scalable growth campaigns.</p>
+      </div>
+
+      <div class="about-bento-grid">
+        <!-- Bio Card -->
+        <div class="glass bento-card bento-bio reveal">
+          <div class="bento-bio-top">
+            <img id="about-photo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkE_sRiOg-HIPDM9Rq7te25Zx2m-IVUUx7AHmBYJfLbPJ0umnW7DIry5c94kwEAI-5fuMXvDSxHxmHZb7WHqYLlk85BliD6QkwDtTTEhpYfa1MriNWv6Exf5lr9V9dNyeUBTSDQxiV8CDwARZstW3xqWWXisVcD63COiJubQN6SX34NWkrRJ7jwcs7jZPG/s1600/Gemini_Generated_Image_stv4slstv4slstv4.png" alt="Md Mahmudul Hasan" class="bio-avatar">
+            <div>
+              <h3>Md Mahmudul Hasan</h3>
+              <span class="bio-role">Full-Stack Digital Freelancer</span>
+              <div class="bio-location"><i class="fa-solid fa-location-dot"></i> Dhaka, Bangladesh</div>
+            </div>
+          </div>
+          <p id="about-p1">I'm Md. Mahmudul Hasan, a WordPress Developer, T-Shirt Designer, and Google Ads Specialist. I create fast, user-friendly websites, unique print-ready T-shirt designs, and data-driven advertising campaigns that help businesses grow their online presence and achieve real results.</p>
+          <p id="about-p2">My background sits at the intersection of Electronics &amp; Information Engineering and hands-on creative work — from fleet HR administration to WordPress builds, marketing localization, and corporate branding.</p>
+          <div class="tags-cloud" id="about-tags"></div>
+        </div>
+
+        <!-- Stats Bento Column -->
+        <div class="bento-stats-col">
+          <div class="glass bento-card stat-bento reveal">
+            <div class="stat-icon-wrap"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="stat-number mono" data-count="4">0</div>
+            <div class="stat-label">Professional Roles Held</div>
+          </div>
+          <div class="glass bento-card stat-bento reveal">
+            <div class="stat-icon-wrap"><i class="fa-solid fa-microchip"></i></div>
+            <div class="stat-number mono" data-count="2">0</div>
+            <div class="stat-label">Engineering Projects</div>
+          </div>
+          <div class="glass bento-card stat-bento reveal">
+            <div class="stat-icon-wrap"><i class="fa-solid fa-language"></i></div>
+            <div class="stat-number mono" data-count="4">0</div>
+            <div class="stat-label">Languages Spoken</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 02 · SKILLS =================== -->
+  <section id="skills" class="section-pad section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><i class="fa-solid fa-layer-group"></i> 02 · Core Skills</div>
+        <h2 class="section-title">Tools of the <span class="grad-text">trade</span></h2>
+        <p class="section-sub">Four core disciplines, one seamless workflow — from building high-converting websites to designing visuals and driving targeted traffic.</p>
+      </div>
+
+      <div class="skills-grid" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <!-- =================== 03 · EXPERIENCE TIMELINE =================== -->
+  <section id="experience" class="section-pad">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><i class="fa-solid fa-timeline"></i> 03 · Experience</div>
+        <h2 class="section-title">Where the work <span class="grad-text">happened</span></h2>
+        <p class="section-sub">Professional roles that shaped my technical discipline, management skills, and delivery standards.</p>
+      </div>
+
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <!-- =================== 04 · FREELANCE & ENGINEERING PROJECTS =================== -->
+  <section id="projects" class="section-pad section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><i class="fa-solid fa-shirt"></i> 04 · Hire Me</div>
+        <h2 class="section-title">Freelance <span class="grad-text">profiles</span></h2>
+        <p class="section-sub">Available for custom T-shirt graphics, brand apparel, and WordPress projects on leading platforms.</p>
+      </div>
+
+      <div class="hire-grid" id="hire-grid"></div>
+
+      <div class="section-header" style="margin-top: 100px;">
+        <div class="eyebrow"><i class="fa-solid fa-code-branch"></i> 05 · Engineering</div>
+        <h2 class="section-title">Academic <span class="grad-text">projects</span></h2>
+        <p class="section-sub">Electronics &amp; Information Engineering coursework and hardware prototypes that trained my systematic problem-solving approach.</p>
+      </div>
+
+      <div class="proj-grid" id="proj-grid"></div>
+    </div>
+  </section>
+
+  <!-- =================== 06 · GRAPHIC DESIGN SHOWCASE (BEHIND THE DESIGNS) =================== -->
+  <section id="designs" class="section-pad">
+    <div class="container">
+      <div class="designs-header-grid">
+        <div class="designs-header-left">
+          <div class="eyebrow eyebrow-orange"><i class="fa-solid fa-palette"></i> 06 · Behind the Designs</div>
+          <h2 class="designs-title">Shaping <span class="grad-text">Visuals</span> That<br>Elevate Brands &amp; Apparel</h2>
+        </div>
+        <div class="designs-header-right">
+          <p class="designs-lead">I'm a graphic designer focused on creating high-impact vector artwork, print-ready T-shirt graphics, and promotional marketing banners that solve real-world branding challenges.</p>
+          <div class="designs-cta-row">
+            <span class="subtext-muted">Let's Build Something Meaningful Together</span>
+            <a href="#contact" class="btn btn-primary btn-sm">Get in touch <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Category Filter Tabs -->
+      <div class="design-filter-bar" id="designFilterBar">
+        <button class="design-filter-btn active" data-filter="all">All Designs <span class="filter-count">30</span></button>
+        <button class="design-filter-btn" data-filter="social-media"><i class="fa-solid fa-share-nodes"></i> Social Media <span class="filter-count">17</span></button>
+        <button class="design-filter-btn" data-filter="business"><i class="fa-solid fa-chart-line"></i> Business &amp; Promo <span class="filter-count">4</span></button>
+        <button class="design-filter-btn" data-filter="food"><i class="fa-solid fa-utensils"></i> Food &amp; Products <span class="filter-count">5</span></button>
+        <button class="design-filter-btn" data-filter="educational"><i class="fa-solid fa-graduation-cap"></i> Courses <span class="filter-count">4</span></button>
+        <button class="design-filter-btn" data-filter="apparel"><i class="fa-solid fa-shirt"></i> Apparel &amp; Vector <span class="filter-count">2</span></button>
+      </div>
+
+      <!-- Interactive Carousel Showcase -->
+      <div class="designs-carousel-wrapper">
+        <button class="carousel-control prev" id="designCarouselPrev" aria-label="Previous slide"><i class="fa-solid fa-angle-left"></i></button>
+        <div class="designs-track-container" id="designTrackContainer">
+          <div class="designs-track" id="designTrack">
+            <!-- Dynamically populated from CONFIG.graphicDesigns -->
+          </div>
+        </div>
+        <button class="carousel-control next" id="designCarouselNext" aria-label="Next slide"><i class="fa-solid fa-angle-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 07 · CLIENT REVIEWS / TESTIMONIALS =================== -->
+  <section id="portfolio" class="section-pad section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><i class="fa-solid fa-star"></i> 07 · Client Feedback</div>
+        <h2 class="section-title">What clients <span class="grad-text">say</span></h2>
+        <p class="section-sub">Verified reviews and 5-star feedback from global marketplace clients.</p>
+      </div>
+
+      <div class="testi-track" id="testi-track"></div>
+    </div>
+  </section>
+
+  <!-- =================== 08 · CERTIFICATIONS & AWARDS =================== -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><i class="fa-solid fa-certificate"></i> 08 · Certifications</div>
+        <h2 class="section-title">Verified <span class="grad-text">credentials</span></h2>
+      </div>
+      <div class="cert-grid" id="cert-grid"></div>
+
+      <div class="section-header" style="margin-top: 90px;">
+        <div class="eyebrow"><i class="fa-solid fa-trophy"></i> 09 · Recognition</div>
+        <h2 class="section-title">Awards &amp; <span class="grad-text">honors</span></h2>
+      </div>
+      <div class="award-grid" id="award-grid"></div>
+    </div>
+  </section>
+
+  <!-- =================== 10 · EDUCATION & LANGUAGES =================== -->
+  <section id="education" class="section-pad section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> 10 · Background</div>
+        <h2 class="section-title">Education &amp; <span class="grad-text">languages</span></h2>
+        <p class="section-sub">Formal academic training and international communication capabilities.</p>
+      </div>
+
+      <div class="edu-lang-grid">
+        <div id="edu-list"></div>
+        <div class="glass lang-card reveal" id="lang-card"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 11 · CONTACT =================== -->
+  <section id="contact" class="section-pad section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><i class="fa-solid fa-envelope"></i> 11 · Get In Touch</div>
+        <h2 class="section-title">Let's build something <span class="grad-text">sharp</span></h2>
+        <p class="section-sub">Have a project in mind or looking for a long-term partner? Let's discuss how we can work together.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="glass contact-info-card" id="contact-info-card"></div>
+        </div>
+
+        <div class="glass contact-form reveal">
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="field"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" required placeholder="Your name"></div>
+              <div class="field"><label for="cf-phone">Phone</label><input id="cf-phone" name="phone" type="tel" placeholder="Your phone number"></div>
+            </div>
+            <div class="form-row single-field">
+              <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required placeholder="you@example.com"></div>
+            </div>
+            <div class="form-row single-field">
+              <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" required placeholder="Tell me about your project..."></textarea></div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+            <div class="form-status" id="formStatus"></div>
+          </form>
+        </div>
+      </div>
+
+      <div class="map-container reveal" style="margin-top: 60px;">
+        <div class="map-wrap">
+          <iframe loading="lazy" src="https://www.google.com/maps?q=Dhaka,Bangladesh&output=embed" allowfullscreen></iframe>
+          <div class="map-overlay"></div>
+        </div>
+        <p class="map-disclaimer">Dhaka, Bangladesh · Available worldwide for remote projects</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =================== PROFESSIONAL MULTI-COLUMN FOOTER =================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand -->
+      <div class="footer-col footer-brand">
+        <a href="#home" class="footer-logo">
+          <span class="dot"></span>
+          <span>HasanVLO</span>
+        </a>
+        <p class="footer-bio">WordPress Developer, Graphic Designer, T-Shirt Artist &amp; Google Ads Specialist based in Dhaka, Bangladesh. Building scalable web experiences and high-converting marketing campaigns.</p>
+        <div class="footer-avail-badge">
+          <span class="pulse-ring"></span> Available for Remote Contracts
+        </div>
+        <div class="footer-socials-wrap" id="footer-socials"></div>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="footer-col">
+        <h4>Core Specialties</h4>
+        <ul class="footer-links">
+          <li><a href="#skills"><i class="fa-solid fa-angle-right"></i> WordPress &amp; Elementor</a></li>
+          <li><a href="#skills"><i class="fa-solid fa-angle-right"></i> Graphic &amp; Vector Design</a></li>
+          <li><a href="#projects"><i class="fa-solid fa-angle-right"></i> Custom T-Shirt Apparel</a></li>
+          <li><a href="#skills"><i class="fa-solid fa-angle-right"></i> Google Ads &amp; PPC Strategy</a></li>
+          <li><a href="#skills"><i class="fa-solid fa-angle-right"></i> On-Page SEO &amp; Speed</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Navigation & Tools -->
+      <div class="footer-col">
+        <h4>Navigation &amp; Resources</h4>
+        <ul class="footer-links">
+          <li><a href="#about"><i class="fa-solid fa-angle-right"></i> About Me</a></li>
+          <li><a href="#experience"><i class="fa-solid fa-angle-right"></i> Career Experience</a></li>
+          <li><a href="#portfolio"><i class="fa-solid fa-angle-right"></i> Client Reviews</a></li>
+          <li><a href="#blog"><i class="fa-solid fa-angle-right"></i> Articles &amp; Insights</a></li>
+          <li><a href="#designs"><i class="fa-solid fa-angle-right"></i> Graphic Showcase</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Legal & Direct Contact -->
+      <div class="footer-col">
+        <h4>Legal &amp; Direct Contact</h4>
+        <ul class="footer-links" style="margin-bottom: 20px;">
+          <li><a href="#" onclick="openLegalModal('privacy'); return false;"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a></li>
+          <li><a href="#" onclick="openLegalModal('terms'); return false;"><i class="fa-solid fa-file-contract"></i> Terms of Service</a></li>
+          <li><a href="#" onclick="openLegalModal('disclaimer'); return false;"><i class="fa-solid fa-circle-info"></i> Disclaimer</a></li>
+        </ul>
+        <div class="footer-direct">
+          <div><i class="fa-solid fa-envelope"></i> online.hasan360@gmail.com</div>
+          <div><i class="fa-solid fa-phone"></i> +880 1892-102001</div>
+          <div><i class="fa-solid fa-location-dot"></i> Dhaka, Bangladesh</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright" id="footer-note">© 2026 HasanVLO — Crafting Websites, Graphic Designs &amp; Digital Growth. All rights reserved.</div>
+      <a href="#home" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i> Top</a>
+    </div>
+  </div>
+</footer>
+
+<!-- =================== WHATSAPP FLOATING BUTTON =================== -->
+<button class="wa-fab" id="waFab" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+<div class="wa-panel" id="waPanel">
+  <div class="wa-head">
+    <i class="fa-brands fa-whatsapp"></i>
+    <div>
+      <strong id="wa-name-head">Md Mahmudul Hasan</strong>
+      <div style="font-size:0.75rem; opacity:0.85;">Usually replies within an hour</div>
+    </div>
+  </div>
+  <div class="wa-body">
+    <div class="wa-bubble">👋 Hi there! Need a website, a T-shirt design, or a Google Ads campaign? Send me a message and let's talk.</div>
+    <button class="wa-send" id="waSendBtn"><i class="fa-brands fa-whatsapp"></i> Start Chat on WhatsApp</button>
+  </div>
+</div>
+
+<!-- =================== MODALS =================== -->
+
+<!-- =================== MODAL 1: DESIGN LIGHTBOX =================== -->
+<div class="modal-backdrop" id="designModal">
+  <div class="modal-window lightbox-window">
+    <div class="modal-header">
+      <div class="lightbox-title-group">
+        <span class="design-tag" id="designModalTag">Social Media Post</span>
+        <h3 id="designModalTitle" style="font-size:1.15rem; font-weight:700; color:#fff; margin:2px 0 0 0;">Design Showcase Preview</h3>
+      </div>
+      <button class="modal-close" onclick="closeModal('designModal')" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="lightbox-body">
+      <button class="lightbox-nav prev" id="designModalPrev" onclick="prevDesignLightbox()" aria-label="Previous design"><i class="fa-solid fa-angle-left"></i></button>
+      <div class="lightbox-img-wrapper">
+        <img id="designModalImg" src="" alt="Design Preview">
+      </div>
+      <button class="lightbox-nav next" id="designModalNext" onclick="nextDesignLightbox()" aria-label="Next design"><i class="fa-solid fa-angle-right"></i></button>
+    </div>
+    <div class="lightbox-footer">
+      <span class="lightbox-counter" id="designModalCounter">1 / 30</span>
+      <p class="lightbox-desc" id="designModalDesc">High quality social media design portfolio piece.</p>
+    </div>
+  </div>
+</div>
+
+<!-- =================== MODAL 2: BLOG READER =================== -->
+<div class="modal-backdrop" id="blogModal">
+  <div class="modal-window">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-book-open" style="color:var(--aqua);"></i> Blog Reader</h3>
+      <button class="modal-close" onclick="closeModal('blogModal')" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="blogArticleContent">
+      <!-- Article content dynamically injected here -->
+    </div>
+  </div>
+</div>
+
+<!-- =================== MODAL 3: LEGAL & POLICIES =================== -->
+<div class="modal-backdrop" id="legalModal">
+  <div class="modal-window">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-scale-balanced" style="color:var(--aqua);"></i> Legal &amp; Policies</h3>
+      <button class="modal-close" onclick="closeModal('legalModal')" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div style="display:flex; border-bottom:1px solid var(--border); padding:0 24px; gap:12px; background:var(--bg-alt);">
+      <button class="legal-tab-btn active" data-tab="privacy" onclick="switchLegalTab('privacy')">Privacy Policy</button>
+      <button class="legal-tab-btn" data-tab="terms" onclick="switchLegalTab('terms')">Terms of Service</button>
+      <button class="legal-tab-btn" data-tab="disclaimer" onclick="switchLegalTab('disclaimer')">Disclaimer</button>
+    </div>
+    <div class="modal-body" id="legalTabContent">
+      <!-- Privacy / Terms / Disclaimer content injected here -->
+    </div>
+  </div>
+</div>
+
+<!-- Application Script -->
+<script src="app.js"></script>
+
+</body>
+</html>
