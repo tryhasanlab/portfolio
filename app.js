@@ -291,7 +291,7 @@ const CONFIG = {
 };
 
 /* ============================================================
-   1. PINNED HERO CANVAS SEQUENCE ENGINE
+   1. PINNED HERO CANVAS SEQUENCE ENGINE (HIGH PERFORMANCE)
    ============================================================ */
 (() => {
   const FRAME_COUNT = 181;
@@ -301,13 +301,12 @@ const CONFIG = {
 
   const ctx = canvas.getContext('2d', { alpha: false });
   const images = new Array(FRAME_COUNT);
-  let loadedCount = 0;
   let isReady = false;
 
   let currentProgress = 0;
   let targetProgress = 0;
   let currentRenderedIndex = -1;
-  const LERP_FACTOR = 0.09;
+  const LERP_FACTOR = 0.28; // Snappy responsiveness without scroll lag
 
   function getFramePath(index) {
     const padded = String(index).padStart(3, '0');
@@ -315,26 +314,39 @@ const CONFIG = {
   }
 
   function resizeCanvas() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Cap DPR on mobile / retina for ultra-smooth GPU performance
+    const dpr = window.innerWidth <= 768 ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
 
     if (isReady && currentRenderedIndex >= 0) {
       renderFrame(currentRenderedIndex);
     }
   }
 
+  function getLoadedImage(targetIdx) {
+    if (images[targetIdx] && images[targetIdx]._loaded) return images[targetIdx];
+    // Search outwards for nearest loaded frame fallback to prevent blanking out
+    for (let delta = 1; delta < 15; delta++) {
+      const left = targetIdx - delta;
+      if (left >= 0 && images[left] && images[left]._loaded) return images[left];
+      const right = targetIdx + delta;
+      if (right < FRAME_COUNT && images[right] && images[right]._loaded) return images[right];
+    }
+    return null;
+  }
+
   function renderFrame(index) {
-    const img = images[index];
-    if (!img || !img.complete || img.naturalWidth === 0) return;
+    const img = getLoadedImage(index);
+    if (!img) return;
 
     const cw = canvas.width;
     const ch = canvas.height;
-    const iw = img.naturalWidth;
-    const ih = img.naturalHeight;
+    const iw = img.naturalWidth || 1920;
+    const ih = img.naturalHeight || 1080;
 
     const canvasAspect = cw / ch;
     const imgAspect = iw / ih;
@@ -350,9 +362,9 @@ const CONFIG = {
       drawHeight = ch;
       drawWidth = ch * imgAspect;
       if (window.innerWidth >= 960) {
-        offsetX = (cw - drawWidth) * 0.15; // Right-bias on desktop
+        offsetX = (cw - drawWidth) * 0.15;
       } else {
-        offsetX = (cw - drawWidth) / 2; // Center on mobile
+        offsetX = (cw - drawWidth) / 2;
       }
       offsetY = 0;
     }
@@ -376,7 +388,7 @@ const CONFIG = {
 
   function animate() {
     const diff = targetProgress - currentProgress;
-    if (Math.abs(diff) > 0.00001) {
+    if (Math.abs(diff) > 0.0001) {
       currentProgress += diff * LERP_FACTOR;
     } else {
       currentProgress = targetProgress;
@@ -394,53 +406,81 @@ const CONFIG = {
     requestAnimationFrame(animate);
   }
 
-  function preloadImages() {
-    for (let i = 1; i <= FRAME_COUNT; i++) {
-      const img = new Image();
-      const frameIdx = i - 1;
-      images[frameIdx] = img;
+  function loadSingleFrame(i, onComplete) {
+    const img = new Image();
+    const frameIdx = i - 1;
+    images[frameIdx] = img;
 
-      const handleLoad = () => {
-        if (!img._loaded) {
-          img._loaded = true;
-          loadedCount++;
-          if (!isReady) {
-            isReady = true;
-            renderFrame(0);
-          } else if (frameIdx === currentRenderedIndex || frameIdx === 0) {
-            renderFrame(frameIdx);
-          }
+    const handleLoad = () => {
+      if (!img._loaded) {
+        img._loaded = true;
+        if (!isReady) {
+          isReady = true;
+          renderFrame(0);
         }
-      };
-
-      img.onload = handleLoad;
-      img.onerror = () => {
-        if (!img._loaded) {
-          img._loaded = true;
-          loadedCount++;
-          if (!isReady) {
-            isReady = true;
-          }
-        }
-      };
-
-      img.src = getFramePath(i);
-
-      if (img.complete && img.naturalWidth !== 0) {
-        handleLoad();
+        if (onComplete) onComplete();
       }
+    };
+
+    img.onload = handleLoad;
+    img.onerror = () => {
+      img._loaded = false;
+      if (onComplete) onComplete();
+    };
+
+    img.src = getFramePath(i);
+    if (img.complete && img.naturalWidth !== 0) {
+      handleLoad();
     }
+  }
+
+  function preloadPriorityImages() {
+    // 1. Priority Load initial keyframes
+    const priorityIndices = [1, 2, 3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 150, 181];
+    let loadedPriority = 0;
+
+    priorityIndices.forEach(idx => {
+      loadSingleFrame(idx, () => {
+        loadedPriority++;
+        if (loadedPriority === 1) {
+          renderFrame(0);
+        }
+      });
+    });
+
+    // 2. Queue non-priority frames in small batches so connection is never choked
+    setTimeout(() => {
+      let currentQueue = 1;
+      function processBatch() {
+        const batchSize = 10;
+        let completedInBatch = 0;
+        for (let b = 0; b < batchSize && currentQueue <= FRAME_COUNT; b++) {
+          if (!images[currentQueue - 1]) {
+            loadSingleFrame(currentQueue, () => {
+              completedInBatch++;
+            });
+          } else {
+            completedInBatch++;
+          }
+          currentQueue++;
+        }
+        if (currentQueue <= FRAME_COUNT) {
+          setTimeout(processBatch, 40);
+        }
+      }
+      processBatch();
+    }, 150);
   }
 
   window.addEventListener('scroll', updateScrollTarget, { passive: true });
   window.addEventListener('resize', () => {
     resizeCanvas();
     updateScrollTarget();
-  });
+  }, { passive: true });
 
   resizeCanvas();
   updateScrollTarget();
-  preloadImages();
+  preloadPriorityImages();
   requestAnimationFrame(animate);
 })();
 
