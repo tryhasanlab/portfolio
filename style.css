@@ -271,9 +271,9 @@ header {
   width: 100%;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding-top: 115px; /* Ensures fixed navbar never covers hero heading */
-  padding-bottom: 70px;
+  align-items: flex-start;
+  padding-top: 135px; /* Ensures spacious clearance below fixed top navbar on 1080p and all displays */
+  padding-bottom: 60px;
 }
 
 .hero-grid {
@@ -312,7 +312,14 @@ header {
   margin-bottom: 20px;
   backdrop-filter: blur(12px);
 }
-.hero-badge i { color: var(--aqua); }
+.pulse-ring {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--aqua);
+  box-shadow: 0 0 10px var(--aqua);
+  display: inline-block;
+}
 
 .hero-text-col h1 {
   font-size: clamp(2.5rem, 5.2vw, 4.2rem);
@@ -323,16 +330,20 @@ header {
 }
 .role-rotator {
   color: var(--aqua);
-  display: inline-block;
-  max-width: 100%;
-  white-space: normal;
-  word-break: break-word;
+  display: inline;
+  position: relative;
 }
-.type-cursor {
-  border-right: 3px solid var(--aqua);
+.role-rotator::after {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background-color: var(--aqua);
+  margin-left: 4px;
+  vertical-align: -0.05em;
   animation: blinkCaret 0.85s step-end infinite;
 }
-@keyframes blinkCaret { 50% { border-color: transparent; } }
+@keyframes blinkCaret { 50% { opacity: 0; } }
 
 .hero-lead {
   color: var(--text-muted);
